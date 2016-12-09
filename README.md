@@ -25,7 +25,7 @@ Please follow through the hardware and software requirements provided with this 
 
 * [OpenGL Development Cookbook](https://www.packtpub.com/game-development/opengl-development-cookbook?utm_source=github&utm_medium=repository&utm_campaign=9781849695046)
 
-##Other books by the author Products
+##Other books by the author
 * [OpenGLES 3.0 Cookbook](https://www.packtpub.com/application-development/opengl-es-30-cookbook)
 
 ###Suggestions and Feedback
