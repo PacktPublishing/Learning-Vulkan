@@ -24,5 +24,9 @@ Please follow through the hardware and software requirements provided with this 
 * [OpenGL 4 Shading Language Cookbook, Second Edition](https://www.packtpub.com/game-development/opengl-4-shading-language-cookbook-second-edition?utm_source=github&utm_medium=repository&utm_campaign=9781782167020)
 
 * [OpenGL Development Cookbook](https://www.packtpub.com/game-development/opengl-development-cookbook?utm_source=github&utm_medium=repository&utm_campaign=9781849695046)
+
+##Other books by the author Products
+* [OpenGLES 3.0 Cookbook](https://www.packtpub.com/application-development/opengl-es-30-cookbook)
+
 ###Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSe5qwunkGf6PUvzPirPDtuy1Du5Rlzew23UBp2S-P3wB-GcwQ/viewform) if you have any feedback or suggestions.
