@@ -67,5 +67,5 @@ public:
 	void getPhysicalDeviceQueuesAndProperties();
 
 	// Query physical device to retrive queue properties
-	uint32_t getGrahicsQueueHandle();
+	uint32_t getGraphicsQueueHandle();
 };

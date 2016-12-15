@@ -290,11 +290,11 @@ void VulkanRenderer::createDepthImage()
 
 	VkFormatProperties props;
 	vkGetPhysicalDeviceFormatProperties(*deviceObj->gpu, depthFormat, &props);
-	if (props.linearTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT) {
-		imageInfo.tiling = VK_IMAGE_TILING_LINEAR;
-	}
-	else if (props.optimalTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT) {
+	if (props.optimalTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT) {
 		imageInfo.tiling = VK_IMAGE_TILING_OPTIMAL;
+	}
+	else if (props.linearTilingFeatures & VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT) {
+		imageInfo.tiling = VK_IMAGE_TILING_LINEAR;
 	}
 	else {
 		std::cout << "Unsupported Depth Format, try other Depth formats.\n";
@@ -639,13 +639,13 @@ void VulkanRenderer::setImageLayout(VkImage image, VkImageAspectFlags aspectMask
 	// An image in this layout can only be used as the destination operand of the commands
 	case VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL:
 	case VK_IMAGE_LAYOUT_PRESENT_SRC_KHR:
-		imgMemoryBarrier.dstAccessMask = VK_ACCESS_MEMORY_READ_BIT;
+		imgMemoryBarrier.dstAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
 		break;
 
 	// Ensure any Copy or CPU writes to image are flushed
 	// An image in this layout can only be used as a read-only shader resource
 	case VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL:
-		imgMemoryBarrier.srcAccessMask = VK_ACCESS_HOST_WRITE_BIT | VK_ACCESS_TRANSFER_WRITE_BIT;
+		imgMemoryBarrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
 		imgMemoryBarrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
 		break;
 
@@ -656,7 +656,7 @@ void VulkanRenderer::setImageLayout(VkImage image, VkImageAspectFlags aspectMask
 
 	// An image in this layout can only be used as a framebuffer depth/stencil attachment
 	case VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL:
-		imgMemoryBarrier.dstAccessMask = VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT;
+		imgMemoryBarrier.dstAccessMask = VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
 		break;
 	}
 

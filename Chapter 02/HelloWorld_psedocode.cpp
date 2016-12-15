@@ -45,8 +45,7 @@ VkInstance instance;	// Vulkan instance object
 VkInstanceCreateInfo instanceInfo	 = {};
 
 // Specify layer and extensions names that needs to be enabled on instance.
-instanceInfo.ppEnabledLayerNames	 = {"VK_LAYER_LUNARG_standard_validation",
-										"VK_LAYER_LUNARG_object_tracker" };
+instanceInfo.ppEnabledLayerNames	 = {"VK_LAYER_LUNARG_standard_validation"};
 
 // Specify extensions that needs to be enabled on instance.
 instanceInfo.ppEnabledExtensionNames = {VK_KHR_SURFACE_EXTENSION_NAME, 

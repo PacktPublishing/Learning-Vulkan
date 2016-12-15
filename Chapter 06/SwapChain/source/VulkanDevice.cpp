@@ -99,7 +99,7 @@ void VulkanDevice::getPhysicalDeviceQueuesAndProperties()
 	vkGetPhysicalDeviceQueueFamilyProperties(*gpu, &queueFamilyCount, queueFamilyProps.data());
 }
 
-uint32_t VulkanDevice::getGrahicsQueueHandle()
+uint32_t VulkanDevice::getGraphicsQueueHandle()
 {
 	//	1. Get the number of Queues supported by the Physical device
 	//	2. Get the properties each Queue type or Queue Family
@@ -107,7 +107,7 @@ uint32_t VulkanDevice::getGrahicsQueueHandle()
 	//			Graphics Queue	- VK_QUEUE_GRAPHICS_BIT 
 	//			Compute Queue	- VK_QUEUE_COMPUTE_BIT
 	//			DMA				- VK_QUEUE_TRANSFER_BIT
-	//			Spare memory	- VK_QUEUE_SPARSE_BINDING_BIT
+	//			Sparse memory	- VK_QUEUE_SPARSE_BINDING_BIT
 	//	3. Get the index ID for the required Queue family, this ID will act like a handle index to queue.
 
 	bool found = false;
@@ -118,7 +118,7 @@ uint32_t VulkanDevice::getGrahicsQueueHandle()
 		//		Graphics Queue		- VK_QUEUE_GRAPHICS_BIT 
 		//		Compute Queue		- VK_QUEUE_COMPUTE_BIT
 		//		DMA/Transfer Queue	- VK_QUEUE_TRANSFER_BIT
-		//		Spare memory		- VK_QUEUE_SPARSE_BINDING_BIT
+		//		Sparse memory		- VK_QUEUE_SPARSE_BINDING_BIT
 
 		if (queueFamilyProps[i].queueFlags & VK_QUEUE_GRAPHICS_BIT){
 			// 3. Get the handle/index ID of graphics queue family.
