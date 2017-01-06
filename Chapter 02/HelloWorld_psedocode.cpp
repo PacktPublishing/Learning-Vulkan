@@ -95,7 +95,7 @@ vkCreateWin32SurfaceKHR(instance, &createInfo, NULL, &surface);
 // Among all queues select a queue which supports presentation
 foreach Queue in All Queues{
 	vkGetPhysicalDeviceSurfaceSupportKHR(gpu, queueIndex, surface, &isPresentaionSupported);
-	// Store this queue’s index
+	// Store this queue index
 	if (isPresentaionSupported) {
 		graphicsQueueFamilyIndex = Queue.index;
 		break;
@@ -130,7 +130,7 @@ vkGetPhysicalDeviceSurfacePresentModesKHR(gpu, surface, &presentModeCount, prese
 		
 // Creating the Swapchain
 VkSwapchainCreateInfoKHR swapChainInfo = {};
-fpCreateSwapchainKHR(device, &swapChainInfo, NULL, &swapChain);
+vkCreateSwapchainKHR(device, &swapChainInfo, NULL, &swapChain);
 		
 // Retrieve the Swapchain images
 vkGetSwapchainImagesKHR(device, swapChain, &swapchainImageCount, NULL);
@@ -145,9 +145,13 @@ foreach swapchainImages{
 	// Insert pipeline barrier
 	VkImageMemoryBarrier imgMemoryBarrier = { ... };
 	vkCmdPipelineBarrier(cmd,srcStages,destStages,0,0,NULL,0,NULL,1,&imgMemoryBarrier);
+
+	// Create the image view for the image object 
 	SwapChainBuffer scBuffer = {...};
-	// Insert pipeline barrier
+	VkImageViewCreateInfo colorImageView = {};
+	colorImageView.image = sc_buffer.image;
 	vkCreateImageView(device, &colorImageView, NULL, &scBuffer.view);
+
 	// Save the image view for application use
 	buffers.push_back(scBuffer);
 }
@@ -161,10 +165,11 @@ vkGetPhysicalDeviceFormatProperties(gpuList, depthFormat, &properties);
 vkCreateImage(device, &imageInfo, NULL, &imageObject);
 
 // Get the memory requirements for a image resource
-vkGetImageMemoryRequirements(device, image, &memRequirements);
+vkGetImageMemoryRequirements(device, imageObject, &memRequirements);
 
 // Allocate memory
-vkAllocateMemory(device, &memAlloc, NULL, &memorys);
+VkDeviceMemory	mem;
+vkAllocateMemory(device, &memAlloc, NULL, &mem);
 
 // Bind memory
 vkBindImageMemory(device, imageObject, mem, 0);
@@ -175,7 +180,9 @@ SetImageLayout(. . .)
 // Pipeline barrier
 vkCmdPipelineBarrier(cmd, srcStages, destStages, 0, 0, NULL, 0, NULL, 1, &imgPipelineBarrier);
 
-// Create Image View
+// Create Image View from created depth buffer object 
+VkImageViewCreateInfo imgViewInfo = { ... };
+imgViewInfo.image = imageObject;
 vkCreateImageView(device, &imgViewInfo, NULL, &view);
 
 
@@ -273,7 +280,7 @@ foreach(drawing buffer in swapchain) {
 	vkCreateFramebuffer(device, &fbInfo, NULL, &framebuffers[i]);
 }
 
-/****************  12. Populate Geometry – storing vertex into GPU memory ****************/
+/****************  12. Populate Geometry storing vertex into GPU memory ****************/
 
 static const VertexWithColor triangleData[] = {
 	/*{  x ,     y,    z,    w,    r,    g,    b,   a },*/
