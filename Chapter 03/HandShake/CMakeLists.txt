@@ -68,7 +68,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 	include_directories(AFTER ${VULKAN_PATH}/Include)
 
 	# Link directory for vulkan-1
-	link_directories(${VULKAN_PATH}/Bin)
+	link_directories(${VULKAN_PATH}/Bin;${VULKAN_PATH}/Lib;)
 endif()
 
 
