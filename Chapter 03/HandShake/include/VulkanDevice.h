@@ -54,7 +54,7 @@ public:
 	std::vector<VkQueueFamilyProperties>	queueFamilyProps;				// Store all queue families exposed by the physical device. attributes
 	uint32_t								graphicsQueueIndex;				// Stores graphics queue index
 	uint32_t								graphicsQueueWithPresentIndex;  // Number of queue family exposed by device
-	uint32_t								queueFamilyCount;				// Device specificc layer and extensions
+	uint32_t								queueFamilyCount;				// Device specific layer and extensions
 
 	// Layer and extensions
 	VulkanLayerAndExtension		layerExtension;
