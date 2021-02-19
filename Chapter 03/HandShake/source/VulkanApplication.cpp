@@ -89,7 +89,7 @@ VkResult VulkanApplication::handShakeWithDevice(VkPhysicalDevice* gpu, std::vect
 	// Get the memory properties from the physical device or GPU.
 	vkGetPhysicalDeviceMemoryProperties(*gpu, &deviceObj->memoryProperties);
 
-	// Query the availabe queues on the physical device and their properties.
+	// Query the available queues on the physical device and their properties.
 	deviceObj->getPhysicalDeviceQueuesAndProperties();
 
 	// Retrive the queue which support graphics pipeline.
