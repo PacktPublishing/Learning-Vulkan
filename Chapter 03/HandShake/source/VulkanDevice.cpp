@@ -115,7 +115,7 @@ uint32_t VulkanDevice::getGraphicsQueueHandle()
 	// Assert if there is no queue found.
 	assert(found);
 
-	return 0;
+	return graphicsQueueIndex;
 }
 
 void VulkanDevice::destroyDevice()
