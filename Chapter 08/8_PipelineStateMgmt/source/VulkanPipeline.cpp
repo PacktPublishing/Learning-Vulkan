@@ -56,7 +56,7 @@ void VulkanPipeline::createPipelineCache()
 bool VulkanPipeline::createPipeline(VulkanDrawable* drawableObj, VkPipeline* pipeline, VulkanShader* shaderObj, VkBool32 includeDepth, VkBool32 includeVi)
 {
 	// Initialize the dynamic states, initially it’s empty
-	VkDynamicState dynamicStateEnables[VK_DYNAMIC_STATE_RANGE_SIZE];
+	VkDynamicState dynamicStateEnables[2];
 	memset(dynamicStateEnables, 0, sizeof dynamicStateEnables);
 
 	// Specify the dynamic state information to pipeline through
