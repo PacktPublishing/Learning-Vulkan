@@ -95,7 +95,7 @@ VkResult VulkanApplication::handShakeWithDevice(VkPhysicalDevice* gpu, std::vect
 	// Retrive the queue which support graphics pipeline.
 	deviceObj->getGraphicsQueueHandle();
 
-	// Create Logical Device, ensure that this device is connecte to graphics queue
+	// Create Logical Device, ensure that this device is connected to graphics queue
 	return deviceObj->createDevice(layers, extensions);
 }
 
